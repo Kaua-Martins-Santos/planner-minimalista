@@ -5,16 +5,14 @@ const { initDatabase, dbAPI } = require('./database');
 let mainWindow;
 
 function createWindow() {
-  // Inicializa o banco de dados local
   initDatabase();
 
-  // Cria a janela principal do sistema
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
     minWidth: 1024,
     minHeight: 768,
-    show: false, // Esconde até carregar para evitar tela branca
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
@@ -22,12 +20,10 @@ function createWindow() {
     },
   });
 
-  // Mostra a janela suavemente quando estiver pronta
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();
   });
 
-  // Em desenvolvimento (roda o Vite), em produção (carrega os arquivos compilados)
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:5173');
   } else {
@@ -35,10 +31,8 @@ function createWindow() {
   }
 }
 
-// Quando o aplicativo estiver pronto, cria a janela
 app.whenReady().then(createWindow);
 
-// Fecha o aplicativo se todas as janelas forem fechadas (padrão Windows/Linux)
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -51,10 +45,9 @@ app.on('activate', () => {
   }
 });
 
-// ==========================================
-// REGISTRO DOS EVENTOS DE COMUNICAÇÃO (IPC)
-// ==========================================
+// Eventos IPC
 ipcMain.handle('get-tasks', () => dbAPI.getTasks());
 ipcMain.handle('add-task', (event, task) => dbAPI.addTask(task));
 ipcMain.handle('update-task-status', (event, id, status) => dbAPI.updateTaskStatus(id, status));
+ipcMain.handle('update-task', (event, task) => dbAPI.updateTask(task)); // Nova linha
 ipcMain.handle('delete-task', (event, id) => dbAPI.deleteTask(id));
