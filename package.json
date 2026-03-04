@@ -1,0 +1,40 @@
+{
+  "name": "taskmaster-offline",
+  "version": "1.0.0",
+  "description": "Sistema completo offline para gerenciamento de tarefas e relatórios",
+  "main": "main/main.js",
+  "scripts": {
+    "dev": "vite",
+    "start": "electron .",
+    "build": "vite build && electron-builder"
+  },
+  "dependencies": {
+    "@hello-pangea/dnd": "^12.2.0",
+    "better-sqlite3": "^9.4.3",
+    "date-fns": "^3.3.1",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.10.3",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.1",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
+  },
+  "build": {
+    "appId": "com.taskmaster.offline",
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    }
+  }
+}
