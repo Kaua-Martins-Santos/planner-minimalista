@@ -1,5 +1,5 @@
 {
-  "name": "taskmaster-offline",
+  "name": "gestor-executivo",
   "version": "1.0.0",
   "description": "Sistema completo offline para gerenciamento de tarefas e relatórios",
   "main": "main/main.js",
@@ -28,7 +28,11 @@
     "vite": "^5.1.4"
   },
   "build": {
-    "appId": "com.taskmaster.offline",
+    "appId": "com.gestorexecutivo.offline",
+    "productName": "Gestor Executivo",
+    "directories": {
+      "output": "release"
+    },
     "win": {
       "target": "nsis"
     },

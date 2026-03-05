@@ -1,1 +1,12 @@
-node_modules
+# Dependências
+node_modules/
+
+# Pastas de build geradas pelo sistema
+dist/
+release/
+dist-electron/
+
+# Arquivos de ambiente e logs
+.env
+.env.local
+npm-debug.log*
